@@ -22,17 +22,21 @@ function start() {
     
     answers.forEach(answer => {
         var options = document.createElement("li");
-        
-        options.addEventListener("click", nextQuestion)
+        var clickOptions = document.querySelectorAll('li')
 
         options.textContent = answer;
         choices.appendChild(options)
-    });
-    
+        clickOptions.addEventListener('click', nextQuestion)
+    });   
 }
 
-function nextQuestion(event) {
-}
+function nextQuestion() {
+   var getOptions = document.getElementsByTagName("ul")
+    
+    while (getOptions.firstChild){
+        getOptions.removeChild(firstChild)
+    }
+}   
 
 function endGame() {
 }
