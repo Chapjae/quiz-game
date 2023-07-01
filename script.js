@@ -15,15 +15,18 @@ startGame.addEventListener("click", start)
 
 function start() {
     var question = document.getElementById("question");
-    var answers = document.getElementById("answer-choices")
+    var choices = document.getElementById("answer-choices")
     
     question.textContent = questions[0];
     answers = answerChoices[0];
     
-    answers.forEach(choice => {
-        var answers = document.createElement("li");
-        answers.textContent = choice;
-        question.appendChild(answers)
+    answers.forEach(answer => {
+        var options = document.createElement("li");
+        
+        options.addEventListener("click", nextQuestion)
+
+        options.textContent = answer;
+        choices.appendChild(options)
     });
     
 }
