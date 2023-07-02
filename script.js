@@ -18,7 +18,7 @@ var timer = document.getElementById("timer")
 
 startGame.addEventListener("click", generateQuestions)
 
-function generateQuestions() {
+function generateQuestions(e) {
     var randomIdx = Math.floor(Math.random() * questions.length)
     var randomQuestion = questions[randomIdx]
     var correctAnswer = correctAnswers[randomIdx] 
@@ -36,15 +36,10 @@ function generateQuestions() {
        // var clickOptions = document.querySelectorAll('li')
            options.textContent = answer;
            choices.appendChild(options)
-           options.addEventListener('click', checkAnswer(options.textContent, correctAnswer))
+           options.addEventListener('click', generateQuestions)
         });
-debugger
-    }    
 
-
-
-function checkAnswer(selectedAnswer, correctAnswer) {
-    if(selectedAnswer === correctAnswer) {
+    if (e.target.textContent == correctAnswer) {
         score ++;
     } else {
         timeLeft -= 15
