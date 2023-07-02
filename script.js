@@ -1,7 +1,7 @@
 var score = 0
 var timeLeft = 200;
 var questions = ["How do I test this?", "More Testing", "Test 3", "Test 4", "Test 5"]
-var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 4", "answer 4 for 4", "Test 5 answers"]
+var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 3", "answer 4 for 4", "Test 5 answers"]
 var answerChoices = [
     ["By Answering this", "Or this?", "Perhaps This?", "I don't know?"], 
     ["Test More Answers", "Answer More Tests", "What About This?", "Hey hey hey"],
@@ -18,7 +18,7 @@ var timer = document.getElementById("timer")
 
 startGame.addEventListener("click", generateQuestions)
 
-function generateQuestions(e) {
+function generateQuestions() {
     var randomIdx = Math.floor(Math.random() * questions.length)
     var randomQuestion = questions[randomIdx]
     var correctAnswer = correctAnswers[randomIdx] 
@@ -36,17 +36,27 @@ function generateQuestions(e) {
        // var clickOptions = document.querySelectorAll('li')
            options.textContent = answer;
            choices.appendChild(options)
-           options.addEventListener('click', generateQuestions)
+           options.addEventListener('click', function() { 
+            checkAnswer(options.textContent, correctAnswer)
+            });
         });
+}
 
-    if (e.target.textContent == correctAnswer) {
-        score ++;
+function checkAnswer(selectedAnswer, correctAnswer) {
+    if (selectedAnswer === correctAnswer) {
+        score +=1;
+        console.log("correct")
     } else {
         timeLeft -= 15
+        console.log("wrong")
     }
     // generateQuestions()
 }
 
+// function nextQuestion() {
+//     while(choices.firstChild) {
+//     choices.removeChild(choices.firstChild)
+//     }
 // }
 
 
