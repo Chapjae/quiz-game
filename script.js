@@ -10,33 +10,41 @@ var currentQuestion = 0
 
 var playerScore = document.getElementById("score");
 var startGame = document.getElementById("start-game");
+var choices = document.getElementById("answers-choices")
+
+
+
 
 startGame.addEventListener("click", start)
 
+function generateQuestions() {
+    while(choices.firstChild) {
+        choices.removeChild(choices.firstChild)
+        }
+
+    answerChoices[0].forEach(answer => {
+        var options = document.createElement("li");
+       // var clickOptions = document.querySelectorAll('li')
+           options.textContent = answer;
+           choices.appendChild(options)
+           options.addEventListener('click', nextQuestion)
+        });    
+}
+
+
 function start() {
     var question = document.getElementById("question");
-    var choices = document.getElementById("answer-choices")
     
     question.textContent = questions[0];
     answers = answerChoices[0];
-    
-    answers.forEach(answer => {
-        var options = document.createElement("li");
-        var clickOptions = document.querySelectorAll('li')
 
-        options.textContent = answer;
-        choices.appendChild(options)
-        clickOptions.addEventListener('click', nextQuestion)
-    });   
+    generateQuestions()
 }
 
-function nextQuestion() {
-   var getOptions = document.getElementsByTagName("ul")
-    
-    while (getOptions.firstChild){
-        getOptions.removeChild(firstChild)
-    }
-}   
+function nextQuestion(e) {
+   generateQuestions()
+
+}
 
 function endGame() {
 }
