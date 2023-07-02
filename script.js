@@ -22,7 +22,7 @@ function launchGame() {
     startGame.disabled = true;
     
     generateQuestions()
-    gameTimer()
+    intId = setInterval(gameTimer, 1000);
 }
 function generateQuestions() {
     var randomIdx = Math.floor(Math.random() * questions.length)
@@ -52,38 +52,34 @@ function checkAnswer(selectedAnswer, correctAnswer) {
         score ++;
     } else {
         timeLeft -= 15;
-        console.log("wrong")
     }
     generateQuestions()
+
 }
 
 function gameTimer() {
-    var gameTime = setInterval(function() {
+    if (timeLeft > 0) {
         timer.textContent = `Time Left!: ${timeLeft}`
         timeLeft --;
-    }, 1000)
-
-    if (timeLeft <= 0) {
-        clearInterval(gameTime);
-        endGame();
+    } else {
+        timer.textContent = `Time's Up!`
+        endGame()
     }
 }
 
 function endGame() {
-    var selectChoices = document.getElementsByTagName("li")
     
-    selectChoices.removeEventListener("click")
+    clearInterval(1)
+    
+    startGame.disabled = false
+    startGame.textContent = "Play Again?"
+    question.textContent = ''
+    
+    while(choices.firstChild) {
+        choices.removeChild(choices.firstChild)
+    }
+    
 }
-// function nextQuestion() {
-//     while(choices.firstChild) {
-//     choices.removeChild(choices.firstChild)
-//     }
-// }
-
-
-
-// function endGame() {
-// }
 
 // function enterInitials() {
 
