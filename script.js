@@ -1,7 +1,7 @@
 var score = 0
 var timeLeft = 200;
 var questions = ["How do I test this?", "More Testing", "Test 3", "Test 4", "Test 5"]
-var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 3", "answer 4 for 4", "Test 5 answers"]
+var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 3", "answer 4 for 4", "Test 5 Answers"]
 var answerChoices = [
     ["By Answering this", "Or this?", "Perhaps This?", "I don't know?"], 
     ["Test More Answers", "Answer More Tests", "What About This?", "Hey hey hey"],
@@ -44,13 +44,12 @@ function generateQuestions() {
 
 function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
-        score +=1;
-        console.log("correct")
+        score ++;
     } else {
-        timeLeft -= 15
+        timeLeft -= 15;
         console.log("wrong")
     }
-    // generateQuestions()
+    generateQuestions()
 }
 
 // function nextQuestion() {
