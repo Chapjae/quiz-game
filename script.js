@@ -16,8 +16,14 @@ var choices = document.getElementById("answers-choices");
 var question = document.getElementById("question");
 var timer = document.getElementById("timer")
 
-startGame.addEventListener("click", generateQuestions)
+startGame.addEventListener("click", launchGame)
 
+function launchGame() {
+    startGame.disabled = true;
+    
+    generateQuestions()
+    gameTimer()
+}
 function generateQuestions() {
     var randomIdx = Math.floor(Math.random() * questions.length)
     var randomQuestion = questions[randomIdx]
@@ -35,7 +41,7 @@ function generateQuestions() {
         var options = document.createElement("li");
            options.textContent = answer;
            choices.appendChild(options)
-           options.addEventListener('click', function() { 
+           options.addEventListener('click', function() {
             checkAnswer(options.textContent, correctAnswer)
             });
         });
@@ -51,11 +57,21 @@ function checkAnswer(selectedAnswer, correctAnswer) {
     generateQuestions()
 }
 
-setInterval(function() {
-    timer.textContent = `Time left: ${timeLeft}`
-    timeLeft --;
-}, 1000)
+function gameTimer() {
+    var gameTime = setInterval(function() {
+        timer.textContent = `Time Left!: ${timeLeft}`
+        timeLeft --;
+    }, 1000)
 
+    if (timeLeft <= 0) {
+        clearInterval(gameTime);
+        endGame();
+    }
+}
+
+function endGame() {
+    
+}
 // function nextQuestion() {
 //     while(choices.firstChild) {
 //     choices.removeChild(choices.firstChild)
