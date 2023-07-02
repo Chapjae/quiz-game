@@ -33,7 +33,6 @@ function generateQuestions() {
 
     answerChoices[randomIdx].forEach(answer => {
         var options = document.createElement("li");
-       // var clickOptions = document.querySelectorAll('li')
            options.textContent = answer;
            choices.appendChild(options)
            options.addEventListener('click', function() { 
@@ -51,6 +50,11 @@ function checkAnswer(selectedAnswer, correctAnswer) {
     }
     generateQuestions()
 }
+
+setInterval(function() {
+    timer.textContent = `Time left: ${timeLeft}`
+    timeLeft --;
+}, 1000)
 
 // function nextQuestion() {
 //     while(choices.firstChild) {
