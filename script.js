@@ -70,7 +70,9 @@ function gameTimer() {
 }
 
 function endGame() {
+    var selectChoices = document.getElementsByTagName("li")
     
+    selectChoices.removeEventListener("click")
 }
 // function nextQuestion() {
 //     while(choices.firstChild) {
