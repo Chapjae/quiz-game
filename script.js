@@ -16,6 +16,8 @@ var choices = document.getElementById("answers-choices");
 var question = document.getElementById("question");
 var timer = document.getElementById("timer")
 
+var intId;
+
 startGame.addEventListener("click", launchGame)
 
 function launchGame() {
@@ -69,10 +71,12 @@ function gameTimer() {
 
 function endGame() {
     
-    clearInterval(1)
+    clearInterval(intId)
     
     startGame.disabled = false
     startGame.textContent = "Play Again?"
+    timeLeft = 200
+    score = 0
     question.textContent = ''
     
     while(choices.firstChild) {
