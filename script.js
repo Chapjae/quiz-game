@@ -1,6 +1,7 @@
 var score = 0
 var timeLeft = 200;
 var questions = ["How do I test this?", "More Testing", "Test 3", "Test 4", "Test 5"]
+var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 4", "answer 4 for 4", "Test 5 answers"]
 var answerChoices = [
     ["By Answering this", "Or this?", "Perhaps This?", "I don't know?"], 
     ["Test More Answers", "Answer More Tests", "What About This?", "Hey hey hey"],
@@ -15,14 +16,17 @@ var choices = document.getElementById("answers-choices");
 var question = document.getElementById("question");
 var timer = document.getElementById("timer")
 
-startGame.addEventListener("click", start)
+startGame.addEventListener("click", generateQuestions)
 
 function generateQuestions() {
     var randomIdx = Math.floor(Math.random() * questions.length)
-    var randomQuestion = questions[randomIdx] 
+    var randomQuestion = questions[randomIdx]
+    var correctAnswer = correctAnswers[randomIdx] 
 
     question.textContent = randomQuestion
-
+    playerScore.textContent = `Your Score: ${score}`;
+    timer.textContent = `Time Left!: ${timeLeft}`;
+    
     while(choices.firstChild) {
         choices.removeChild(choices.firstChild)
         }
@@ -32,25 +36,30 @@ function generateQuestions() {
        // var clickOptions = document.querySelectorAll('li')
            options.textContent = answer;
            choices.appendChild(options)
-           options.addEventListener('click', nextQuestion)
-        });    
+           options.addEventListener('click', checkAnswer(options.textContent, correctAnswer))
+        });
+debugger
+    }    
+
+
+
+function checkAnswer(selectedAnswer, correctAnswer) {
+    if(selectedAnswer === correctAnswer) {
+        score ++;
+    } else {
+        timeLeft -= 15
+    }
+    // generateQuestions()
 }
 
+// }
 
-function start() {
-    playerScore.textContent = `Your Score: ${score}`;
-    timer.textContent = `Time Left!: ${timeLeft}`;
-    generateQuestions()
-}
 
-function nextQuestion(e) {
-   generateQuestions()
-}
 
-function endGame() {
-}
+// function endGame() {
+// }
 
-function enterInitials() {
+// function enterInitials() {
 
-}
+// }
 
