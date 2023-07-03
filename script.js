@@ -26,6 +26,7 @@ function launchGame() {
     generateQuestions()
     intId = setInterval(gameTimer, 1000);
 }
+
 function generateQuestions() {
     var randomIdx = Math.floor(Math.random() * questions.length)
     var randomQuestion = questions[randomIdx]
@@ -70,22 +71,29 @@ function gameTimer() {
 }
 
 function endGame() {
-    
+    var playerInit = document.getElementById("high-scores")
+
     clearInterval(intId)
     
     startGame.disabled = false
     startGame.textContent = "Play Again?"
     timeLeft = 200
     score = 0
-    question.textContent = ''
     
-    while(choices.firstChild) {
-        choices.removeChild(choices.firstChild)
-    }
+    choices.setAttribute("hidden", "")
+    question.setAttribute("hidden", "")
     
+    playerInit.removeAttribute("hidden","") 
+    localStorage.setItem("highScore", )
+    
+    // while(choices.firstChild) {
+    //     choices.removeChild(choices.firstChild)
+    // }
+    
+
 }
 
-// function enterInitials() {
-
+// function enterInitials(e) {
+//     e.preventDefault()
 // }
 

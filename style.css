@@ -17,3 +17,7 @@ li {
 li:hover {
     cursor: pointer;
 }
+
+/* #high-scores {
+    display: none;
+} */
