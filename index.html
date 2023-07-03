@@ -20,18 +20,17 @@
             </ul>
         </section>
         
-        <section hidden>
+        <section hidden id="high-scores">
             <h2>High Score Hall of Fame</h2>
-            <ul id="scores">
+            <ul>
 
             </ul>
         </section>
             
-        <form hidden action="/scores" method="post" id="high-scores">
-            <h2>Enter your Initials</h2>
-            <div id="player-score"></div>
+        <form hidden action="/scores" method="post" id="high-score-form">
+            <h2>Scribe your Name into the Halls of Fame</h2>
             <input type="text" placeholder="Enter a Name">
-            <input type="submit">
+            <button type="submit">Submit Your Name!</button>
         </form>
         <button id="start-game">HOW SMRT R U?</button>
         <script src="script.js"></script>

@@ -71,7 +71,7 @@ function gameTimer() {
 }
 
 function endGame() {
-    var playerInit = document.getElementById("high-scores")
+    var playerInit = document.getElementById("high-score-form")
 
     clearInterval(intId)
     
@@ -84,16 +84,15 @@ function endGame() {
     question.setAttribute("hidden", "")
     
     playerInit.removeAttribute("hidden","") 
-    localStorage.setItem("highScore", )
+    playerInit.addEventListener("submit", enterInitials);
     
-    // while(choices.firstChild) {
-    //     choices.removeChild(choices.firstChild)
-    // }
-    
-
 }
 
-// function enterInitials(e) {
-//     e.preventDefault()
-// }
+function enterInitials(e) {
+    var form = document.getElementById("high-score-form");
+   
+    e.preventDefault()
+
+    localStorage.setItem("highScore", form) 
+    }
 
