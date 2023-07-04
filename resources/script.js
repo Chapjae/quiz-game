@@ -18,7 +18,7 @@ var choices = document.getElementById("answers-choices");
 var question = document.getElementById("question");
 var timer = document.getElementById("timer");
 var name = document.getElementById("player-names");
-var playerInit = document.getElementById("high-score-form");
+var playerInit = document.getElementById("playername");
 
 var intId;
 
@@ -27,12 +27,12 @@ startGame.addEventListener("click", launchGame)
 function launchGame() {
     startGame.disabled = true;
 
-    choices.removeAttribute("hidden", "")
-    question.removeAttribute("hidden", "")
+    // choices.removeAttribute("hidden", "")
+    // question.removeAttribute("hidden", "")
     
-    if(playerInit){
-        playerInit.setAttribute("hidden","") 
-    }
+    // if(playerInit){
+    //     playerInit.setAttribute("hidden","") 
+    // }
     
     generateQuestions()
     intId = setInterval(gameTimer, 1000);
@@ -89,7 +89,7 @@ function endGame() {
     startGame.disabled = false
     startGame.textContent = "Play Again?"
     timeLeft = 200
-    score = 0
+    // score = 0
     
     choices.setAttribute("hidden", "")
     question.setAttribute("hidden", "")
@@ -99,22 +99,26 @@ function endGame() {
     
 }
 
-function enterInitials() {
-    var form = document.getElementById("high-score-form");
+var form = document.querySelector("#high-score-form");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    // var playerName = document.getElementById("playername");
+    highScoreBoard()
+}) 
+
+// function enterInitials() {
+// }
+
+function highScoreBoard() {
+    var names = document.getElementById("player-names");
+    var name = document.createElement("li");
     var playerName = document.getElementById("playername");
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-       
-        var name = document.getElementById("player-names");
-        var names = document.createElement("li");
-
-        names.textContent = playerName.value
-        name.appendChild(names)
-        highScores.push(playerName.value)
-        })
+    names.textContent = playerName.value
+    name.appendChild(names)
+    highScores.push(`Name: ${names.textContent} High Score: ${score}`)
+    
 
     localStorage.setItem("highScore", form) 
 }
-
-
