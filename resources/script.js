@@ -1,5 +1,5 @@
 var score = 0
-var timeLeft = 10;
+var timeLeft = 200;
 var questions = ["How do I test this?", "More Testing", "Test 3", "Test 4", "Test 5"]
 var highScores = []
 var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 3", "answer 4 for 4", "Test 5 Answers"]
@@ -17,7 +17,6 @@ var startGame = document.getElementById("start-game");
 var choices = document.getElementById("answers-choices");
 var question = document.getElementById("question");
 var timer = document.getElementById("timer");
-// var name = document.getElementById("player-names");
 var playerInit = document.getElementById("playername");
 var nameForm = document.getElementById("high-score-form");
 var highScoreBoard = document.getElementById("high-scores");
@@ -40,6 +39,10 @@ function launchGame() {
     if(highScoreBoard){
         highScoreBoard.setAttribute("hidden", ""); 
     }
+    if(nameForm) {
+        nameForm.hidden = true;
+    }
+    
     score = 0
     generateQuestions()
     intId = setInterval(gameTimer, 1000);
@@ -73,9 +76,11 @@ function checkAnswer(selectedAnswer, correctAnswer) {
         score ++;
     } else {
         timeLeft -= 15;
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        }
     }
     generateQuestions()
-
 }
 
 function gameTimer() {
@@ -94,49 +99,28 @@ nameForm.addEventListener("submit", function(e) {
         scoreBoard(playerName);
     }) 
 
-function endGame() {
-    // var nameForm = document.getElementById("high-score-form");
-    
+function endGame() { 
     clearInterval(intId)
     
     startGame.disabled = false
     startGame.textContent = "Play Again?"
-    timeLeft = 200
-    // score = 0
-    
+    timeLeft = 200 
     choices.setAttribute("hidden", "")
     question.setAttribute("hidden", "")
     nameForm.removeAttribute("hidden","") 
-    // playerInit.addEventListener("submit");
-   
 }
 
-
-// var form = document.getElementById("high-score-form");
-
-
-
-// function enterInitials(e) {
-    //     e.preventDefault();
-    
-    
-    // };
 function showScoreboard() {
-    // Hide the game-related elements
     choices.setAttribute("hidden", "");
     question.setAttribute("hidden", "");
     timer.setAttribute("hidden","");
     playerScore.setAttribute("hidden", "");
     checkScoreBoard.disabled = true;
-    // startGame.setAttribute("hidden", "");
-    
-    // Show the high score board
+
     highScoreBoard.removeAttribute("hidden");
-    // scoreboardh2.visible = true;
 }    
 
 function scoreBoard(playerName) {
-    // var highScoreBoard = document.getElementById("high-scores");
     var playerList = document.getElementById("player-names")   
     highScoreBoard.removeAttribute("hidden");
     nameForm.setAttribute("hidden", "");
@@ -147,7 +131,7 @@ function scoreBoard(playerName) {
     highScores.sort(function(a, b) {
         return b.score - a.score;
     });
-    // Iterate over the highScores array
+   
     highScores.forEach(function(entry) {
         var listItem = document.createElement("li");
         listItem.textContent = `Name: ${entry.name} High Score: ${entry.score}`;
@@ -155,7 +139,4 @@ function scoreBoard(playerName) {
     });
     
     JSON.parse(localStorage.getItem("highScores"));
-    // Add the new entry to the highScores array
-    
-    // Store the updated highScores array in localStorage
 }
