@@ -19,6 +19,7 @@ var question = document.getElementById("question");
 var timer = document.getElementById("timer");
 var name = document.getElementById("player-names");
 var playerInit = document.getElementById("playername");
+var highScoreBoard = document.getElementById("high-scores");
 
 var intId;
 
@@ -27,12 +28,12 @@ startGame.addEventListener("click", launchGame)
 function launchGame() {
     startGame.disabled = true;
 
-    // choices.removeAttribute("hidden", "")
-    // question.removeAttribute("hidden", "")
+    choices.removeAttribute("hidden", "")
+    question.removeAttribute("hidden", "")
     
-    // if(playerInit){
-    //     playerInit.setAttribute("hidden","") 
-    // }
+    if(highScoreBoard){
+        highScoreBoard.setAttribute("hidden", ""); 
+    }
     
     generateQuestions()
     intId = setInterval(gameTimer, 1000);
@@ -99,26 +100,33 @@ function endGame() {
     
 }
 
-var form = document.querySelector("#high-score-form");
+var form = document.getElementById("high-score-form");
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
-    // var playerName = document.getElementById("playername");
-    highScoreBoard()
 }) 
 
-// function enterInitials() {
-// }
+function enterInitials(e) {
+    e.preventDefault();
+    
+    var playerName = document.getElementById("playername");
+    scoreBoard(playerName);
+};
 
-function highScoreBoard() {
+function scoreBoard(playerName) {
     var names = document.getElementById("player-names");
     var name = document.createElement("li");
-    var playerName = document.getElementById("playername");
+    var highScoreBoard = document.getElementById("high-scores");
+    // var playerName = document.getElementById("playername");
 
-    names.textContent = playerName.value
+    highScoreBoard.removeAttribute("hidden", "");
+    form.setAttribute("hidden", "");
+
+    names.textContent = playerName
     name.appendChild(names)
     highScores.push(`Name: ${names.textContent} High Score: ${score}`)
     
 
-    localStorage.setItem("highScore", form) 
+    localStorage.setItem("highScore", JSON.stringify(highScores));
+    highScoreBoard.appendChild(name);
 }
