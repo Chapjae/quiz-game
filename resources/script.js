@@ -1,7 +1,7 @@
 var score = 0
 var timeLeft = 10;
 var questions = ["How do I test this?", "More Testing", "Test 3", "Test 4", "Test 5"]
-var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+var highScores = []
 var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 3", "answer 4 for 4", "Test 5 Answers"]
 var answerChoices = [
     ["By Answering this", "Or this?", "Perhaps This?", "I don't know?"], 
@@ -83,8 +83,8 @@ function gameTimer() {
 }
 
 function endGame() {
-    var playerInit = document.getElementById("high-score-form")
-
+    var nameForm = document.getElementById("high-score-form")
+    
     clearInterval(intId)
     
     startGame.disabled = false
@@ -94,49 +94,44 @@ function endGame() {
     
     choices.setAttribute("hidden", "")
     question.setAttribute("hidden", "")
-    
-    playerInit.removeAttribute("hidden","") 
-    playerInit.addEventListener("submit", enterInitials);
-    
+    nameForm.removeAttribute("hidden","") 
+    // playerInit.addEventListener("submit");
+    nameForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        var playerName = document.getElementById("playername").value;
+        debugger
+        scoreBoard(playerName);
+    }) 
 }
 
-var form = document.getElementById("high-score-form");
+// var form = document.getElementById("high-score-form");
 
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
-}) 
 
-function enterInitials(e) {
-    e.preventDefault();
+
+// function enterInitials(e) {
+//     e.preventDefault();
     
-    var playerName = document.getElementById("playername");
-    scoreBoard(playerName);
-};
+    
+// };
 
 function scoreBoard(playerName) {
     var highScoreBoard = document.getElementById("high-scores");
   
     highScoreBoard.removeAttribute("hidden");
-    form.setAttribute("hidden", "");
-  
-    // Clear the existing content
-    highScoreBoard.innerHTML = "";
-  
+    playerInit.setAttribute("hidden", "");
+    
+    highScores.push({ name: playerName, score: score });
     // Iterate over the highScores array
     highScores.forEach(function(entry) {
       var listItem = document.createElement("li");
+      
       listItem.textContent = `Name: ${entry.name}, High Score: ${entry.score}`;
       highScoreBoard.appendChild(listItem);
+    debugger
     });
   
-    // Add the new entry to the highScores array
-    highScores.push({ name: playerName, score: score });
-  
-    // Store the updated highScores array in localStorage
     localStorage.setItem("highScores", JSON.stringify(highScores));
+    // Add the new entry to the highScores array
+    JSON.parse(localStorage.getItem("highScores"));
+    // Store the updated highScores array in localStorage
   }
-  
-  // Call highScoreBoard when the page loads
-  document.addEventListener("DOMContentLoaded", function() {
-    scoreBoard();
-  });
