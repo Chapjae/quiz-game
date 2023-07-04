@@ -17,7 +17,7 @@ var startGame = document.getElementById("start-game");
 var choices = document.getElementById("answers-choices");
 var question = document.getElementById("question");
 var timer = document.getElementById("timer");
-var name = document.getElementById("player-names");
+// var name = document.getElementById("player-names");
 var playerInit = document.getElementById("playername");
 var nameForm = document.getElementById("high-score-form");
 var highScoreBoard = document.getElementById("high-scores");
@@ -136,15 +136,14 @@ function showScoreboard() {
 }    
 
 function scoreBoard(playerName) {
-    var highScoreBoard = document.getElementById("high-scores");
-        
+    // var highScoreBoard = document.getElementById("high-scores");
+    var playerList = document.getElementById("player-names")   
     highScoreBoard.removeAttribute("hidden");
     nameForm.setAttribute("hidden", "");
     highScores.push({ name: playerName, score: score });
     localStorage.setItem("highScores", JSON.stringify(highScores));
-    highScoreBoard.innerHTML= '';
-    scoreboardh2.visible = true;
-
+    
+    playerList.innerHTML = ''
     highScores.sort(function(a, b) {
         return b.score - a.score;
     });
@@ -152,7 +151,7 @@ function scoreBoard(playerName) {
     highScores.forEach(function(entry) {
         var listItem = document.createElement("li");
         listItem.textContent = `Name: ${entry.name} High Score: ${entry.score}`;
-        highScoreBoard.appendChild(listItem);
+        playerList.appendChild(listItem);
     });
     
     JSON.parse(localStorage.getItem("highScores"));
