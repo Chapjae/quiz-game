@@ -1,6 +1,7 @@
 var score = 0
-var timeLeft = 200;
+var timeLeft = 10;
 var questions = ["How do I test this?", "More Testing", "Test 3", "Test 4", "Test 5"]
+var highScores = []
 var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 3", "answer 4 for 4", "Test 5 Answers"]
 var answerChoices = [
     ["By Answering this", "Or this?", "Perhaps This?", "I don't know?"], 
@@ -10,11 +11,14 @@ var answerChoices = [
     ["Test 5 Answers", "answer 2 for 5", "answer, 3 for 5", "answer 4 for 5"]
 ] 
 
+
 var playerScore = document.getElementById("score");
 var startGame = document.getElementById("start-game");
 var choices = document.getElementById("answers-choices");
 var question = document.getElementById("question");
-var timer = document.getElementById("timer")
+var timer = document.getElementById("timer");
+var name = document.getElementById("player-names");
+var playerInit = document.getElementById("high-score-form");
 
 var intId;
 
@@ -22,6 +26,13 @@ startGame.addEventListener("click", launchGame)
 
 function launchGame() {
     startGame.disabled = true;
+
+    choices.removeAttribute("hidden", "")
+    question.removeAttribute("hidden", "")
+    
+    if(playerInit){
+        playerInit.setAttribute("hidden","") 
+    }
     
     generateQuestions()
     intId = setInterval(gameTimer, 1000);
@@ -88,11 +99,22 @@ function endGame() {
     
 }
 
-function enterInitials(e) {
+function enterInitials() {
     var form = document.getElementById("high-score-form");
-   
-    e.preventDefault()
+    var playerName = document.getElementById("playername");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+       
+        var name = document.getElementById("player-names");
+        var names = document.createElement("li");
+
+        names.textContent = playerName.value
+        name.appendChild(names)
+        highScores.push(playerName.value)
+        })
 
     localStorage.setItem("highScore", form) 
-    }
+}
+
 
