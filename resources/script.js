@@ -77,11 +77,13 @@ function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         score ++;
         answerResults.textContent = "Correct!"
+        answerResults.classList.toggle("right");
         setTimeout(function() {answerResults.textContent =""}, 600)
         setTimeout(generateQuestions, 400)
     } else {
         timeLeft -= 15;
         answerResults.textContent = "WRONG!"
+        answerResults.classList.toggle("right");
         setTimeout(function() {answerResults.textContent =""}, 600)
         setTimeout(generateQuestions, 400)
         if (timeLeft < 0) {

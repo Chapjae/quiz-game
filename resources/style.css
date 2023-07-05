@@ -11,8 +11,9 @@ li {
     font-weight: bold;
 }
 
-li:hover {
+#answers-choices li:hover {
     cursor: pointer;
+    color: green;
 }
 
 ul {
@@ -28,23 +29,19 @@ h1 {
     box-shadow: 10px inset;
 }
 
-#player-names {
+#player-names, #answers-choices {
     border: 10px outset gray;
     margin: 0 0px 0 0px; 
 }
 
-#player-names:empty {
-    border: none;
-}
-
 input {
-    width: 300px;
-    height: 30px;
     font-family: monospace;
+    height: 50px;
+    width: 300px;
+    margin: 10px;
 }
 
 button {
-    /* height: 35px; */
     background-color: azure;
     color:indigo;
     font-size: 40px;
@@ -59,20 +56,17 @@ button:disabled {
     background-color: dimgrey;
 }
 
-/* h2 {
-    font-size: 60px;
+#result {
+    font-size: 50px;
     font-family: monospace;
-    
-} */
+    background-color:gold;
+}
 
 span {
     padding: 20px;
     font-family: monospace;
     font-size: 40px;
 }
-/* #high-scores {
-    display: none;
-} */
 
 h2 {
     background-color: rgba(256,256,256,.03);
@@ -85,39 +79,27 @@ h2 {
     text-align: center;
     text-shadow: 5px 5px #0c0c0c;
     line-height: 1.4em;
-    /* text-transform: uppercase; */
-    /* letter-spacing: .3em; */
     white-space:nowrap;
     color:orangered;
     border: 10px outset gray;
     margin: 0px 0px 80px 0px;
   }
   
-  /* span {
-    color: #000;
-    font-family: monospace;
-    font-size: 5em;
-    text-transform: lowercase;
-    vertical-align: middle;
-    letter-spacing: .2em;
-  } */
-  
-  .fire {
+.fire {
     animation: animation 1s ease-in-out infinite alternate;
     -moz-animation: animation 1s ease-in-out infinite alternate;
     -webkit-animation: animation 1s ease-in-out infinite alternate;
     -o-animation: animation 1s ease-in-out infinite alternate;
   }
   
-  .burn {
+.burn {
     animation: animation .65s ease-in-out infinite alternate;
     -moz-animation: animation .65s ease-in-out infinite alternate;
     -webkit-animation: animation .65s ease-in-out infinite alternate;
     -o-animation: animation .65s ease-in-out infinite alternate;
   }
   
-  @keyframes animation
-  {
+@keyframes animation {
   0% {text-shadow: 0 0 20px #fefcc9,
     10px -10px 30px #feec85,
     -20px -20px 40px #ffae34,
@@ -134,8 +116,7 @@ h2 {
     10px -90px 80px  #973716;}
   }
   
-  @-moz-keyframes animation
-  {
+@-moz-keyframes animation {
   0% {text-shadow: 0 0 20px #fefcc9,
     10px -10px 30px #feec85,
     -20px -20px 40px #ffae34,
@@ -152,8 +133,7 @@ h2 {
     10px -90px 80px  #973716;}
   }
   
-  @-webkit-keyframes animation
-  {
+@-webkit-keyframes animation {
   0% {text-shadow: 0 0 20px #fefcc9,
     10px -10px 30px #feec85,
     -20px -20px 40px #ffae34,
@@ -170,8 +150,7 @@ h2 {
     10px -90px 80px  #973716;}
   }
   
-  @-o-keyframes animation
-  {
+@-o-keyframes animation {
   0% {text-shadow: 0 0 20px #fefcc9,
     10px -10px 30px #feec85,
     -20px -20px 40px #ffae34,
