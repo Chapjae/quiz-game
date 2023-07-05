@@ -22,6 +22,7 @@ var nameForm = document.getElementById("high-score-form");
 var highScoreBoard = document.getElementById("high-scores");
 var checkScoreBoard = document.getElementById("score-board");
 var scoreboardh2 = document.getElementById("score-board-h2");
+var answerResults = document.getElementById("result");
 var intId;
 
 startGame.addEventListener("click", launchGame)
@@ -35,6 +36,7 @@ function launchGame() {
     question.removeAttribute("hidden", "")
     timer.removeAttribute("hidden","");
     playerScore.removeAttribute("hidden","")
+    answerResults.removeAttribute("hidden","")
     
     if(highScoreBoard){
         highScoreBoard.setAttribute("hidden", ""); 
@@ -74,8 +76,12 @@ function generateQuestions() {
 function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         score ++;
+        answerResults.textContent = "Correct!"
+        setTimeout(function() {answerResults.textContent =""}, 900)
     } else {
         timeLeft -= 15;
+        answerResults.textContent = "WRONG!"
+        setTimeout(function() {answerResults.textContent =""}, 900)
         if (timeLeft < 0) {
             timeLeft = 0;
         }
@@ -105,6 +111,8 @@ function endGame() {
     startGame.disabled = false
     startGame.textContent = "Play Again?"
     timeLeft = 200 
+
+    answerResults.setAttribute("hidden", "")
     choices.setAttribute("hidden", "")
     question.setAttribute("hidden", "")
     nameForm.removeAttribute("hidden","") 
@@ -130,24 +138,16 @@ function showScoreboard() {
 }    
 
 function scoreBoard(playerName) {
-    var playerList = document.getElementById("player-names")   
-    
+    var highestScores = document.getElementById("player-names");
+      
     highScoreBoard.removeAttribute("hidden");
     nameForm.setAttribute("hidden", "");
     highScores.push({ name: playerName, score: score });
     localStorage.setItem("highScores", JSON.stringify(highScores));
     
-    playerList.innerHTML = ''
+    highestScores.innerHTML = ''
     highScores.sort(function(a, b) {
         return b.score - a.score;
     });
-
-    JSON.parse(localStorage.getItem("highScores"));
-
-    highScores.forEach(function(entry) {
-        var listItem = document.createElement("li");
-        listItem.textContent = `Name: ${entry.name} High Score: ${entry.score}`;
-        playerList.appendChild(listItem);
-    });
-    
+    showScoreboard() 
 }
