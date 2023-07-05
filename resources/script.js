@@ -77,13 +77,13 @@ function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         score ++;
         answerResults.textContent = "Correct!"
-        setTimeout(function() {answerResults.textContent =""}, 900)
-        setTimeout(generateQuestions, 500)
+        setTimeout(function() {answerResults.textContent =""}, 600)
+        setTimeout(generateQuestions, 400)
     } else {
         timeLeft -= 15;
         answerResults.textContent = "WRONG!"
-        setTimeout(function() {answerResults.textContent =""}, 900)
-        setTimeout(generateQuestions, 500)
+        setTimeout(function() {answerResults.textContent =""}, 600)
+        setTimeout(generateQuestions, 400)
         if (timeLeft < 0) {
             timeLeft = 0;
         }
@@ -131,6 +131,10 @@ function showScoreboard() {
     checkScoreBoard.disabled = true;
 
     highScoreBoard.removeAttribute("hidden");
+    
+    scores.sort(function(a, b) {
+           return b.score - a.score;
+       });
 
     scores.forEach(function(score) {
         var newScore = document.createElement("li");
@@ -148,8 +152,6 @@ function scoreBoard(playerName) {
     localStorage.setItem("highScores", JSON.stringify(highScores));
     
     highestScores.innerHTML = ''
-    highScores.sort(function(a, b) {
-        return b.score - a.score;
-    });
+   
     showScoreboard() 
 }
