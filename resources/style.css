@@ -5,14 +5,19 @@ body {
 
 li {
     list-style: none;
-    font-size: 50px;
+    font-size: 40px;
     font-family: monospace;
+    color:#ffffff;
+    font-weight: bold;
 }
 
 li:hover {
     cursor: pointer;
 }
 
+ul {
+    background-color: #0c0c0c;
+}
 h1 {
     font-size: 70px;
     font-family: monospace;
@@ -25,7 +30,7 @@ h1 {
 
 #player-names {
     border: 10px outset gray;
-    margin: 0 80px 0 80px; 
+    margin: 0 0px 0 0px; 
 }
 
 #player-names:empty {
@@ -39,10 +44,10 @@ input {
 }
 
 button {
-    height: 35px;
+    /* height: 35px; */
     background-color: azure;
     color:indigo;
-    font-size: 20px;
+    font-size: 40px;
     font-family: monospace;
 }
 
@@ -84,6 +89,8 @@ h2 {
     /* letter-spacing: .3em; */
     white-space:nowrap;
     color:orangered;
+    border: 10px outset gray;
+    margin: 0px 0px 80px 0px;
   }
   
   /* span {
