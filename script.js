@@ -1,14 +1,21 @@
 var score = 0
 var timeLeft = 200;
-var questions = ["How do I test this?", "More Testing", "Test 3", "Test 4", "Test 5"]
+var questions = ["Who is Nintendo's Mascot?", "Which of these Disney animated films starred Robin Williams?", 'Which actor said the line "Say hello to my little friend"?', 
+                'What movie series includes the infamous "Lightsaber" weapon?', "Ryu and Ken are characters that belong to which video game franchise?", "Which of these Pokemon are NOT part of the first 151?",
+                'Which Star Trek character famously says "Live long and prosper"?', 'Finish this movie quote "Do or do not, _____']
 var highScores = JSON.parse(localStorage.getItem("highScores")) || []
-var correctAnswers = ["By Answering this", "Answer More Tests", "answer 3 for 3", "answer 4 for 4", "Test 5 Answers"]
+var correctAnswers = ["Mario", "Aladdin", "Al Pacino", "Star Wars", "Street Fighter", "Wobbuffet", "Spock", "There is no try"]
 var answerChoices = [
-    ["By Answering this", "Or this?", "Perhaps This?", "I don't know?"], 
-    ["Test More Answers", "Answer More Tests", "What About This?", "Hey hey hey"],
-    ["Test 3 Answers", "answer 2 for 3", "answer 3 for 3", "answer 4 for 3"],
-    ["Test 4 Answers", "answer 2 for 4", "answer 3 for 4", "answer 4 for 4"],
-    ["Test 5 Answers", "answer 2 for 5", "answer, 3 for 5", "answer 4 for 5"]
+    ["Mario", "Pikachu", "Zelda", "Luigi"], 
+    ["Snow White and the Seven Dwarves", "The Lion King", "Aladdin", "The Little Mermaid"],
+    ["Danny Devito", "Al Pacino", "Robert DeNiro", "Ray Liotta"],
+    ["Harry Potter", "Aliens", "Marvel Cinematic Universe", "Star Wars"],
+    ["Street Fighter", "Tekken", "Soul Calibur", "Mortal Kombat"],
+    ["Wobbuffet", "Squirtle", "Kabutops", "Nidoking"],
+    ["Captain James T. Kirk", "Lieutenant Hikari Sulu", "Spock", "Jean-Luc Picard"],
+    ["There is no try", "I know Kung Fu", "I'll never let go", "1.21 Jigawatts"],
+
+
 ] 
 
 
@@ -77,13 +84,11 @@ function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         score ++;
         answerResults.textContent = "Correct!"
-        answerResults.classList.toggle("right");
         setTimeout(function() {answerResults.textContent =""}, 600)
         setTimeout(generateQuestions, 400)
     } else {
         timeLeft -= 15;
         answerResults.textContent = "WRONG!"
-        answerResults.classList.toggle("right");
         setTimeout(function() {answerResults.textContent =""}, 600)
         setTimeout(generateQuestions, 400)
         if (timeLeft < 0) {

@@ -29,6 +29,10 @@ h1 {
     box-shadow: 10px inset;
 }
 
+#question {
+  overflow-wrap: break-word ;
+}
+
 #player-names, #answers-choices {
     border: 10px outset gray;
     margin: 0 0px 0 0px; 
@@ -79,7 +83,7 @@ h2 {
     text-align: center;
     text-shadow: 5px 5px #0c0c0c;
     line-height: 1.4em;
-    white-space:nowrap;
+    /* white-space:nowrap; */
     color:orangered;
     border: 10px outset gray;
     margin: 0px 0px 80px 0px;
