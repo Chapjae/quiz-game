@@ -78,15 +78,17 @@ function checkAnswer(selectedAnswer, correctAnswer) {
         score ++;
         answerResults.textContent = "Correct!"
         setTimeout(function() {answerResults.textContent =""}, 900)
+        setTimeout(generateQuestions, 500)
     } else {
         timeLeft -= 15;
         answerResults.textContent = "WRONG!"
         setTimeout(function() {answerResults.textContent =""}, 900)
+        setTimeout(generateQuestions, 500)
         if (timeLeft < 0) {
             timeLeft = 0;
         }
     }
-    generateQuestions()
+    // generateQuestions()
 }
 
 function gameTimer() {
