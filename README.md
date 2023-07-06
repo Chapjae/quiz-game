@@ -50,6 +50,6 @@ CSS
 HTML
 
 ## Links ##
-[Github Repo]("https://github.com/Chapjae/quiz-game")
-[LinkedIn] ("www.linkedin.com/in/jay-liu-3208a3bb")
-[IMDB] ("https://www.imdb.com/name/nm8089821/")
+[Github Repo]("https://github.com/Chapjae/quiz-game") <br>
+[LinkedIn]("www.linkedin.com/in/jay-liu-3208a3bb") <br>
+[IMDB]("https://www.imdb.com/name/nm8089821")
