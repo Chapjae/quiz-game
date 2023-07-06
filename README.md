@@ -50,6 +50,7 @@ CSS
 HTML
 
 ## Links ##
+[Deployed Site](http://chapjae.github.io/quiz-game) <br>
 [Github Repo](https://github.com/Chapjae/quiz-game) <br>
 [LinkedIn](https://www.linkedin.com/in/jay-liu-3208a3bb) <br>
 [IMDB](https://www.imdb.com/name/nm8089821)
