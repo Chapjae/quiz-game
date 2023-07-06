@@ -61,10 +61,12 @@ button:disabled {
 }
 
 #result {
+    z-index: -1;
     font-size: 50px;
     font-family: monospace;
     background-color:gold;
-    display: inline-block;
+    display: inline;
+    position: relative;
 }
 
 span {
