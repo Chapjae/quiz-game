@@ -2,9 +2,10 @@ var score = 0
 var timeLeft = 200;
 var questions = ["Who is Nintendo's Mascot?", "Which of these Disney animated films starred Robin Williams?", 'Which actor said the line "Say hello to my little friend"?', 
                 'What movie series includes the infamous "Lightsaber" weapon?', "Ryu and Ken are characters that belong to which video game franchise?", "Which of these Pokemon are NOT part of the first 151?",
-                'Which Star Trek character famously says "Live long and prosper"?', 'Finish this movie quote "Do or do not, _____']
+                'Which Star Trek character famously says "Live long and prosper"?', 'Finish this movie quote "Do or do not, _____', "This film was directed by James Cameron in 1991 and Starred Arnold Schwarzenegger", 'What film featured the one-hit-wonder, "Eye of the Tiger"?',
+                'Which "Chris" is known for playing Captain America?', 'Which animated show featured the video game "World of Warcraft" for an episode?']
 var highScores = JSON.parse(localStorage.getItem("highScores")) || []
-var correctAnswers = ["Mario", "Aladdin", "Al Pacino", "Star Wars", "Street Fighter", "Wobbuffet", "Spock", "There is no try"]
+var correctAnswers = ["Mario", "Aladdin", "Al Pacino", "Star Wars", "Street Fighter", "Wobbuffet", "Spock", "There is no try", "Terminator 2", "Rocky", "Chris Evans", "South Park"]
 var answerChoices = [
     ["Mario", "Pikachu", "Zelda", "Luigi"], 
     ["Snow White and the Seven Dwarves", "The Lion King", "Aladdin", "The Little Mermaid"],
@@ -14,8 +15,10 @@ var answerChoices = [
     ["Wobbuffet", "Squirtle", "Kabutops", "Nidoking"],
     ["Captain James T. Kirk", "Lieutenant Hikari Sulu", "Spock", "Jean-Luc Picard"],
     ["There is no try", "I know Kung Fu", "I'll never let go", "1.21 Jigawatts"],
-
-
+    ["True Lies", "Terminator 2", "Predator", "Commando"],
+    ["Creed", "Rambo", "Demolition Man", "Rocky"],
+    ["Chris Pine", "Chris Pratt", "Chris Hemsworth", "Chris Evans"],
+    ["Family Guy", "South Park", "The Simpsons", "Rick and Morty"]
 ] 
 
 
@@ -84,12 +87,12 @@ function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         score ++;
         answerResults.textContent = "Correct!"
-        setTimeout(function() {answerResults.textContent =""}, 600)
+        setTimeout(function() {answerResults.textContent =""}, 900)
         setTimeout(generateQuestions, 400)
     } else {
         timeLeft -= 15;
         answerResults.textContent = "WRONG!"
-        setTimeout(function() {answerResults.textContent =""}, 600)
+        setTimeout(function() {answerResults.textContent =""}, 900)
         setTimeout(generateQuestions, 400)
         if (timeLeft < 0) {
             timeLeft = 0;
